@@ -43,7 +43,7 @@ A flexible JSON model of a template.
 
 * A single JSON object
 * Any property name other than '\_children' and '\_template' may be used to define data and metadata properties of the template. Your template can render these values simply by refering to them directly by name.
-* '\_template' is a string that identifies (by filename) the template that the template renderer should use to render the response.",
+* '\_template' is a string that identifies (by filename) the template that the template renderer should use to render the response.,
 * '\_children' should be expected by your templates to be an ordered array specifying the child data (usually other template objects) to be rendered in the parent template.
   * Simple strings, numbers, and other JS primitives may be children of a template object.
   * Or another template may be included simply by including a JSON object with the '\_template' and '\_children' properties set.
@@ -73,18 +73,18 @@ A flexible JSON model of a template.
 
 Templates MUST:
 
-1. Ignore the PaTMo \_template value.
-2. Ignore out-of-scope PaTMo values. Stay in your scope.
-3. Loop through the \_children array in whatever order is deemed appropriate.
-4. Support 0 to inifinitely many values in the \_children array.
-5. Safely render the template data not found in \_children no matter what value is found there. Make no assumptions.
-6. Be written in such a way that a request could be fulfilled according to spec using only that template, no matter how minor the template.
+1. Ignore out-of-scope PaTMo values. Stay in your scope.
+2. Loop through the \_children array in whatever order is deemed appropriate.
+3. Support 0 to inifinitely many values in the \_children array.
+4. Safely render the template data not found in \_children no matter what value is found there. Make no assumptions.
+5. Be written in such a way that a request could be fulfilled according to spec using only that template, no matter how minor the template.
 
 #### HTML Templates
 
 I'm trying to make this thing not HTML specific, but let's be honest, compared to XML, JSON, etc. HTML has a lot of weird rules and exceptions.
 
-Thus, to fulfill item 6 above, HTML templates MUST:
+Thus, to fulfill imperative 5 above, that all templates MUST be written in such a way that a request could be fulfilled using only that template,
+HTML templates MUST:
 
 1. Be wrapped in an <html></html> tag. It's HTML, so declare it.
 2. Include their own CSS style declarations in their own <head></head> tag.
@@ -109,7 +109,7 @@ rendered by the Renderer. This should usually be chosen based on response type: 
 The Paradigm HTML Finalizer will:
 
 * Collapse all <html></html> elements into one by effectively removing all but the first <html> and all but the last </html>.
-* Collapse all <head></head> elements into one, maintaining child order, placing it directly before the <body> tag in the at html top. The additional values already specified by a tag in a parent template for any tags in the head will be dropped except for <style> tags
+* Collapse all <head></head> elements into one, maintaining child order, placing it directly before the <body> tag in the at html top. Additional values already specified by a tag in the <head> of a parent template will be dropped except for \<style\> tags.
 * Collapse all <script></script> tags into one, maintaining child order, minifying the code and placing it as the last element in the <body> tag.
 * Minify and gzip the resulting HTML.
 
