@@ -88,7 +88,7 @@ HTML templates MUST:
 
 1. Be wrapped in an <html></html> tag. It's HTML, so declare it.
 2. Include their own CSS style declarations in their own <head></head> tag.
-3. Include their own JavaScript code in their own <script></script> tag.
+3. Include their own JavaScript code in their own \<script\>\</script\> tag.
 4. ONLY include JavaScript that executes inside an event handler.
 
 These rules make it very easy to write modular HTML templates that:
@@ -110,6 +110,6 @@ The Paradigm HTML Finalizer will:
 
 * Collapse all <html></html> elements into one by effectively removing all but the first <html> and all but the last </html>.
 * Collapse all <head></head> elements into one, maintaining child order, placing it directly before the <body> tag in the at html top. Additional values already specified by a tag in the <head> of a parent template will be dropped except for \<style\> tags.
-* Collapse all <script></script> tags into one, maintaining child order, minifying the code and placing it as the last element in the <body> tag.
+* Collapse all \<script\>\</script\> tags into one, maintaining child order, minifying the code and placing it as the last element in the <body> tag.
 * Minify and gzip the resulting HTML.
 
